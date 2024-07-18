@@ -6,11 +6,9 @@ function getComputerChoice() {
     let result = "";
     if (computerChoice < (1/3)) {
         result = "Rock";
-    }
-    else if (computerChoice >= (1/3) && computerChoice < (1/3*2)) {
+    } else if (computerChoice >= (1/3) && computerChoice < (1/3*2)) {
         result = "Paper";
-    }
-    else {
+    } else {
         result = "Scissors";
     }
     return result;
@@ -27,27 +25,46 @@ function playRound(humanChoice, computerChoice) {
 
     if (humanChoice === computerChoice) {
         console.log("You tied!");
-    }
-
-    else if (humanChoice === "ROCK" && computerChoice === "SCISSORS") {
+    } else if (humanChoice === "ROCK" && computerChoice === "SCISSORS") {
         console.log("You win! " + humanChoice + " beats " + computerChoice + " !");
         humanScore++;
-    }
-
-    else if (humanChoice === "SCISSORS" && computerChoice === "PAPER") {
+    } else if (humanChoice === "SCISSORS" && computerChoice === "PAPER") {
         console.log("You win! " + humanChoice + " beats " + computerChoice + " !");
         humanScore++;
-    }
-
-    else if (humanChoice === "PAPER" && computerChoice === "ROCK") {
+    } else if (humanChoice === "PAPER" && computerChoice === "ROCK") {
         console.log("You win! " + humanChoice + " beats " + computerChoice + " !");
         humanScore++;
-    }
-
-    else {
+    } else {
         console.log("You lost! " + computerChoice + " beats " + humanChoice + " !");
         computerScore++;
     }
-
-    return
+    return;
 }
+
+function resetGame() {
+    humanScore = 0;
+    computerScore = 0;
+}
+
+function playGame() {
+    let message = '';
+    let i = 0;
+    while (i < 5) {
+        let computerChoice = getComputerChoice();
+        let humanChoice = getHumanChoice();
+        playRound(humanChoice, computerChoice);
+        i++;
+    }
+    if (humanScore > computerScore) {
+        message = 'Congratulations! You are the winner!';
+    } else if (humanScore === computerScore) {
+        message = 'Not bad! You tied!';
+    } else {
+        message = 'Uh oh! You lost!';
+    }
+    resetGame();
+    return console.log(message);
+}
+
+
+playGame();
