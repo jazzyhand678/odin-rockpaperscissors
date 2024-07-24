@@ -7,6 +7,7 @@ const options = ['rock', 'paper', 'scissors'];
 const rockBtn = document.getElementById("rock");
 const sciBtn = document.getElementById("scissors");
 const papBtn = document.getElementById("paper");
+const gameMsg = document.querySelector(".game-message");
 
 function getComputerChoice() {
     let computerChoice = options[Math.floor(Math.random() * options.length)];
@@ -17,16 +18,16 @@ function getComputerChoice() {
 function playRound(humanChoice) {
     let computerChoice = getComputerChoice();
     if (humanChoice === computerChoice) {
-        console.log("You tied!");
+        gameMsg.textContent = "You tied!";
     } else if (
         (humanChoice === "rock" && computerChoice === "scissors") ||
-        (humanChoice === "SCISSORS" && computerChoice === "PAPER") ||
-        (humanChoice === "PAPER" && computerChoice === "ROCK")
+        (humanChoice === "scissors" && computerChoice === "paper") ||
+        (humanChoice === "paper" && computerChoice === "rock")
     ) {
-        console.log("You win! " + humanChoice + " beats " + computerChoice + " !");
+        gameMsg.textContent = "You win! " + humanChoice + " beats " + computerChoice + " !";
         humanScore++;
     } else {
-        console.log("You lost! " + computerChoice + " beats " + humanChoice + " !");
+        gameMsg.textContent = "You lost! " + computerChoice + " beats " + humanChoice + " !";
         computerScore++;
     }
 }
