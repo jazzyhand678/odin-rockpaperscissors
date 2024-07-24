@@ -1,44 +1,34 @@
+// for game logic
 let humanScore = 0;
 let computerScore = 0;
+const options = ['rock', 'paper', 'scissors'];
+
+// for game UI
+const rockBtn = document.getElementById("rock");
+const sciBtn = document.getElementById("scissors");
+const papBtn = document.getElementById("paper");
 
 function getComputerChoice() {
-    let computerChoice = Math.random();
-    let result = "";
-    if (computerChoice < (1/3)) {
-        result = "Rock";
-    } else if (computerChoice >= (1/3) && computerChoice < (1/3*2)) {
-        result = "Paper";
-    } else {
-        result = "Scissors";
-    }
-    return result;
+    let computerChoice = options[Math.floor(Math.random() * options.length)];
+    console.log(computerChoice);
+    return computerChoice;
 }
 
-function getHumanChoice() {
-    let userInput = prompt("Enter your choice of Rock, Paper, or Scissors:");
-    return userInput;
-}
-
-function playRound(humanChoice, computerChoice) {
-    humanChoice = humanChoice.toUpperCase();
-    computerChoice = computerChoice.toUpperCase();
-
+function playRound(humanChoice) {
+    let computerChoice = getComputerChoice();
     if (humanChoice === computerChoice) {
         console.log("You tied!");
-    } else if (humanChoice === "ROCK" && computerChoice === "SCISSORS") {
-        console.log("You win! " + humanChoice + " beats " + computerChoice + " !");
-        humanScore++;
-    } else if (humanChoice === "SCISSORS" && computerChoice === "PAPER") {
-        console.log("You win! " + humanChoice + " beats " + computerChoice + " !");
-        humanScore++;
-    } else if (humanChoice === "PAPER" && computerChoice === "ROCK") {
+    } else if (
+        (humanChoice === "rock" && computerChoice === "scissors") ||
+        (humanChoice === "SCISSORS" && computerChoice === "PAPER") ||
+        (humanChoice === "PAPER" && computerChoice === "ROCK")
+    ) {
         console.log("You win! " + humanChoice + " beats " + computerChoice + " !");
         humanScore++;
     } else {
         console.log("You lost! " + computerChoice + " beats " + humanChoice + " !");
         computerScore++;
     }
-    return;
 }
 
 function resetGame() {
@@ -46,7 +36,7 @@ function resetGame() {
     computerScore = 0;
 }
 
-function playGame() {
+/*function playGame() {
     let message = '';
     let i = 0;
     while (i < 5) {
@@ -67,4 +57,8 @@ function playGame() {
 }
 
 
-playGame();
+playGame();*/
+
+rockBtn.addEventListener("click", () => {playRound("rock")});
+sciBtn.addEventListener("click", () => {playRound("scissors")});
+papBtn.addEventListener("click", () => {playRound("paper")});
