@@ -8,6 +8,8 @@ const rockBtn = document.getElementById("rock");
 const sciBtn = document.getElementById("scissors");
 const papBtn = document.getElementById("paper");
 const gameMsg = document.querySelector(".game-message");
+const playerScore = document.querySelector(".player-score");
+const compScore = document.querySelector(".computer-score");
 
 function getComputerChoice() {
     let computerChoice = options[Math.floor(Math.random() * options.length)];
@@ -26,9 +28,11 @@ function playRound(humanChoice) {
     ) {
         gameMsg.textContent = "You win! " + humanChoice + " beats " + computerChoice + " !";
         humanScore++;
+        playerScore.textContent = humanScore;
     } else {
         gameMsg.textContent = "You lost! " + computerChoice + " beats " + humanChoice + " !";
         computerScore++;
+        compScore.textContent = computerScore;
     }
 }
 
