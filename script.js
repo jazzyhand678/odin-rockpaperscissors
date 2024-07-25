@@ -34,11 +34,22 @@ function playRound(humanChoice) {
         computerScore++;
         compScore.textContent = computerScore;
     }
+    checkGameWinner(humanScore, computerScore);
+}
+
+function checkGameWinner(humanScore, computerScore) {
+    if (humanScore === 5) {
+        gameMsg.textContent = "You won! Congratulations!";
+    } else if (computerScore === 5) {
+        gameMsg.textContent = "Unfortunately, you lost. Better luck next time!"
+    }
 }
 
 function resetGame() {
     humanScore = 0;
     computerScore = 0;
+    playerScore.textContent = humanScore;
+    compScore.textContent = computerScore;
 }
 
 /*function playGame() {
